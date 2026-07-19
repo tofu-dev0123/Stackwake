@@ -14,6 +14,12 @@
   ],
   "license": "MIT",
   "author": "tofu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tofu-dev0123/Stackwake.git"
+  },
+  "homepage": "https://github.com/tofu-dev0123/Stackwake#readme",
+  "bugs": "https://github.com/tofu-dev0123/Stackwake/issues",
   "type": "module",
   "bin": {
     "swk": "bin/swk.js"
