@@ -1,6 +1,6 @@
 {
   "name": "stackwake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wake your whole stack with one command. A polyrepo-aware, language-agnostic CLI to start, sync, and inspect multiple repositories at once.",
   "keywords": [
     "cli",
