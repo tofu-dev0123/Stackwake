@@ -1,0 +1,47 @@
+{
+  "name": "stackwake",
+  "version": "0.0.0",
+  "description": "Wake your whole stack with one command. A polyrepo-aware, language-agnostic CLI to start, sync, and inspect multiple repositories at once.",
+  "keywords": [
+    "cli",
+    "polyrepo",
+    "monorepo",
+    "dev",
+    "procfile",
+    "git",
+    "process-manager",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "author": "tofu",
+  "type": "module",
+  "bin": {
+    "swk": "bin/swk.js"
+  },
+  "files": ["dist", "bin"],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^20.14.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0"
+  },
+  "allowScripts": {
+    "@biomejs/biome@1.9.4": true,
+    "esbuild@0.27.7": true
+  }
+}
