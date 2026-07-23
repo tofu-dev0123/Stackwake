@@ -57,9 +57,22 @@ npm run format     # biome format --write .
 - **リリース**: `main` にタグ `vX.Y.Z` → CI で自動 `npm publish`（`--provenance`）
 - コミットメッセージに `Co-Authored-By` や AI 生成フッターは付けない
 
+### Trusted Publishing（OIDC）導入時の落とし穴
+
+`v0.1.1` の初リリースで踏んだ3点。次に別の CLI を作るときの再発防止メモ：
+
+1. **`setup-node` に `registry-url` を指定しない**。指定すると空トークンの `.npmrc`
+   （`_authToken=` + `always-auth`）が生成され、トークン認証が強制されて OIDC に切り替わらず
+   `E404` になる。Trusted Publishing では registry-url もトークンも不要。
+2. **npm 側の Trusted Publisher 設定を完全一致で登録する**（repo 名の大文字小文字・
+   workflow ファイル名は `release.yml`・Environment は空欄）。不一致だと `ENEEDAUTH`。
+3. **`package.json` に `repository` を入れる**。無い（空文字）と provenance 検証で
+   `E422`（`repository.url is ""`）になり公開できない。`homepage`・`bugs` も併せて入れておく。
+
 ## 現状 / 次のステップ
 
-- 現状: プロジェクト基盤（TypeScript + Biome）とドキュメント骨組みを整備。CLI はサブコマンドの
-  スタブのみ（`not implemented yet` を返す）。
-- 次: MVP 仕様の確定（`swk up` の挙動・設定探索・部分起動の要否）→ ADR 整備 → 実装 → CI/CD。
+- 現状: プロジェクト基盤（TypeScript + Biome）・ドキュメント・CI/CD を整備済み。CI/CD は稼働し、
+  `stackwake@0.1.1` を Trusted Publishing 経由（provenance 付き）で npm 公開済み。
+  CLI はサブコマンドのスタブのみ（`not implemented yet` を返す）。
+- 次: MVP 仕様の確定（`swk up` の挙動・設定探索・部分起動の要否）→ ADR 整備 → 実装。
 - **未確定の設計は実装着手前に作者と詰めること。**
